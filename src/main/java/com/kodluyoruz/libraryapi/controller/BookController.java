@@ -17,7 +17,7 @@ import javax.validation.Valid;
 public class BookController {
     private final BookService service;
 
-    @PatchMapping("{id}/availability")
+    @PutMapping("{id}/availability")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void patchAvailability(@PathVariable int id,
                                   @Valid @RequestBody UpdateAvailableRequest request) {

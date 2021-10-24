@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import static com.kodluyoruz.libraryapi.model.mapper.BookMapper.BOOK_MAPPER;
 
@@ -30,6 +32,7 @@ public class BookService {
         return repository.findById(id).orElseThrow(() -> new NotFoundException("Book not found!"));
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     public void updateAvailability(int id, UpdateAvailableRequest request) {
         repository.setAvailability(id, request.getAvailability());
     }
